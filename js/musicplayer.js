@@ -9,7 +9,7 @@ class MusicPlayer {
     }
 
     next() {
-        if(this.currentIndex + 1 != this.musicList.length) {
+        if(this.currentIndex + 1 < this.musicList.length) {
             this.currentIndex++;
         }
         else {
