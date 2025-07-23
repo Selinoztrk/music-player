@@ -1,28 +1,28 @@
 class MusicPlayer {
     constructor(musicList) {
         this.musicList = musicList;
-        this.index = 0;
+        this.currentIndex = 0;
     }
 
     getMusic() {
-        return this.musicList[this.index];
+        return this.musicList[this.currentIndex];
     }
 
     next() {
-        if(this.index + 1 != this.musicList.length) {
-            this.index++;
+        if(this.currentIndex + 1 != this.musicList.length) {
+            this.currentIndex++;
         }
         else {
-            this.index = 0;
+            this.currentIndex = 0;
         }
     }
 
     prev() {
-        if(this.index != 0) {
-            this.index--;
+        if(this.currentIndex != 0) {
+            this.currentIndex--;
         }
         else {
-            this.index = this.musicList.length - 1;
+            this.currentIndex = this.musicList.length - 1;
         }
     }
 

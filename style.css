@@ -1,27 +1,73 @@
 .container {
     width: 350px;
+    margin: 0 auto;
 }
 
 #music-image {
     width: 100%;
-}
-
-#controls i {
-    font-size: 30px;
-    color: purple;
-    margin-right: 20px;
+    max-width: 250px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
 }
 
 #progress {
-    margin-bottom: 20px;
+    width: 100%;
+    margin-top: 15px;
 }
 
 #progress-bar {
     width: 100%;
 }
 
-#progress .times, #controls {
+#progress .times {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+#controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+#controls > div {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
+}
+
+#controls i {
+    color: purple;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#controls i:hover {
+    color: #5e1a8a;
+    transform: scale(1.2);
+}
+
+#prev, #next {
+    font-size: 28px;
+    gap: 10px;
+}
+
+#controls #play {
+    font-size: 36px;
+    margin: 0 10px;
+    transform: translateY(-2px);
+}
+
+#repeat, #shuffle, #volume {
+    font-size: 20px;
+}
+
+#volume-bar {
+    width: 100px;
 }

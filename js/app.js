@@ -10,13 +10,42 @@ const currentTime = document.querySelector("#current-time");
 const progressBar = document.querySelector("#progress-bar");
 const volume = document.querySelector("#volume");
 const volumeBar = document.querySelector("#volume-bar");
+const repeat = document.querySelector("#repeat");
+const shuffle = document.querySelector("#shuffle");
+const audio = document.querySelector("#audio");
+
+
+let isRepeat = false;
+let isShuffle = false;
+let muteState = "unmuted";
 
 
 const player = new MusicPlayer(musicList);
 
+
 window.addEventListener("load", () => {
     let music = player.getMusic();
     displayMusic(music);
+});
+
+
+repeat.addEventListener("click", () => {
+    isRepeat = !isRepeat;
+    if (isRepeat) {
+        isShuffle = false;
+        shuffle.classList.remove("active");
+    }
+    repeat.classList.toggle("active", isRepeat);
+});
+
+
+shuffle.addEventListener("click", () => {
+    isShuffle = !isShuffle;
+    if (isShuffle) {
+        isRepeat = false;
+        repeat.classList.remove("active");
+    }
+    shuffle.classList.toggle("active", isShuffle);
 });
 
 
@@ -69,8 +98,6 @@ const playMusic = () => {
     audio.play();
 }
 
-
-let muteState = "unmuted";
 
 volumeBar.addEventListener("input", (e) => {
     const value = e.target.value;
@@ -127,4 +154,37 @@ audio.addEventListener("timeupdate", () => {
 progressBar.addEventListener("input", () => {
     currentTime.textContent = calculateTime(progressBar.value);
     audio.currentTime = progressBar.value;
+});
+
+
+audio.addEventListener("ended", () => {
+    console.log("Şarkı bitti");
+    if (isRepeat) {
+        audio.currentTime = 0;
+        playMusic();
+        return;
+    }
+
+    if (isShuffle) {
+        if (player.musicList.length > 1) {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * player.musicList.length);
+            } while (randomIndex === player.currentIndex);
+            player.currentIndex = randomIndex;
+        } else {
+            player.currentIndex = 0;
+        }
+
+        let music = player.getMusic();
+        displayMusic(music);
+        playMusic();
+        return;
+    }
+
+    if (player.currentIndex < player.musicList.length - 1) {
+        nextMusic();
+    } else {
+        pauseMusic();
+    }
 });
