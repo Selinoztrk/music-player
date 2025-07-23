@@ -1,6 +1,12 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
 .container {
-    width: 350px;
-    margin: 0 auto;
+    width: 400px;
 }
 
 #music-image {
@@ -11,63 +17,82 @@
     border-radius: 10px;
 }
 
-#progress {
-    width: 100%;
-    margin-top: 15px;
-}
-
-#progress-bar {
-    width: 100%;
-}
-
-#progress .times {
+#progress .times, 
+.card-footer,
+.volume-container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    font-size: 14px;
-    margin-top: 5px;
+}
+
+#progress-bar::-webkit-slider-thumb {
+  background-color: gray;
+  border: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+#progress-bar::-moz-range-thumb {
+  background-color: gray;
+  border: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.volume-container i {
+    color: #555;
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+.volume-container i:hover {
+    transform: scale(1.15);
+    cursor: pointer;
+}
+
+#volume-bar::-webkit-slider-thumb {
+  background-color: gray;
+  border: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+#volume-bar::-moz-range-thumb {
+  background-color: gray;
+  border: none;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 }
 
 #controls {
-    width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    margin-top: 20px;
+    gap: 5px;
+    margin-top: 15px;
 }
 
-#controls > div {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+#controls i,
+#controls button {
+    transition: transform 0.3s ease;
 }
 
-#controls i {
-    color: purple;
+#controls i:hover,
+#controls button:hover {
+    transform: scale(1.15);
     cursor: pointer;
-    transition: transform 0.2s ease;
 }
 
-#controls i:hover {
-    color: #5e1a8a;
-    transform: scale(1.2);
-}
-
-#prev, #next {
-    font-size: 28px;
-    gap: 10px;
-}
-
-#controls #play {
-    font-size: 36px;
-    margin: 0 10px;
-    transform: translateY(-2px);
-}
-
-#repeat, #shuffle, #volume {
-    font-size: 20px;
-}
-
-#volume-bar {
-    width: 100px;
+#shuffle, #repeat {
+    font-size: 1.2rem;
+    color: #555;
+    padding: 10px;
 }
