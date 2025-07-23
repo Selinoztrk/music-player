@@ -13,6 +13,7 @@ const volumeBar = document.querySelector("#volume-bar");
 const repeat = document.querySelector("#repeat");
 const shuffle = document.querySelector("#shuffle");
 const audio = document.querySelector("#audio");
+const ul = document.querySelector("ul");
 
 
 let isRepeat = false;
@@ -26,6 +27,7 @@ const player = new MusicPlayer(musicList);
 window.addEventListener("load", () => {
     let music = player.getMusic();
     displayMusic(music);
+    displayMusicList(player.musicList);
 });
 
 
@@ -188,3 +190,25 @@ audio.addEventListener("ended", () => {
         pauseMusic();
     }
 });
+
+
+const displayMusicList = (list) => {
+    for(let i=0; i < list.length; i++) {
+        let liTag = `
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span> ${list[i].getName()} </span>
+                <span id="music-${i}" class="badge bg-secondary rounded-pill"></span>
+                <audio class="music-${i}" src="mp3/${list[i].file}"></audio>
+            </li>
+        `;
+
+        ul.insertAdjacentHTML("beforeend", liTag);
+
+        let liAudioDuration = ul.querySelector(`#music-${i}`);
+        let liAudioTag = ul.querySelector(`.music-${i}`);
+
+        liAudioTag.addEventListener("loadeddata", () => {
+            liAudioDuration.innerText = calculateTime(liAudioTag.duration);
+        });
+    }
+};
