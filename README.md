@@ -62,8 +62,7 @@ MusicPlayer/
 
 ## 🖼️ Screenshot
 
->
-> `![App Screenshot](screenshot/screenshot.png)`
+> ![App Screenshot](screenshot/screenshot.png)
 
 ---
 
